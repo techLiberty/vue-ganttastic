@@ -82,7 +82,8 @@ const tooltipContent = computed(() => {
   const format = TOOLTIP_FORMATS[precision.value]
   const barStartFormatted = toDayjs(barStartRaw.value).format(format)
   const barEndFormatted = toDayjs(barEndRaw.value).format(format)
-  return `${barStartFormatted} \u2013 ${barEndFormatted}`
+  const barLabel = bar.value?.ganttBarConfig.label + ':';
+  return `${barLabel} ${barStartFormatted} \u2013 ${barEndFormatted}`
 })
 </script>
 
