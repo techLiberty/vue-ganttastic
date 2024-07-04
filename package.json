@@ -1,5 +1,5 @@
 {
-  "name": "@infectoone/vue-ganttastic",
+  "name": "@rsd/vue-ganttastic",
   "version": "2.3.2",
   "description": "A simple and customizable Gantt chart component for Vue.js",
   "author": "Marko Zunic (@zunnzunn)",
