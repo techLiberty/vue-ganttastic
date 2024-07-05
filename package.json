@@ -55,7 +55,6 @@
     "dayjs": "^1.11.5",
     "vue": "^3.2.40"
   },
-  "homepage": "https://zunnzunn.github.io/vue-ganttastic/",
   "keywords": [
     "gantt",
     "chart",
@@ -68,7 +67,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zunnzunn/vue-ganttastic"
+    "url": "https://github.com/techliberty/vue-ganttastic"
   },
   "dependencies": {
     "@vueuse/core": "^9.1.1"
