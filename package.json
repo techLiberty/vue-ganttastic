@@ -1,5 +1,5 @@
 {
-  "name": "@rsd/vue-ganttastic",
+  "name": "@techliberty/vue-ganttastic",
   "version": "2.3.2",
   "description": "A simple and customizable Gantt chart component for Vue.js",
   "author": "Marko Zunic (@zunnzunn)",
@@ -72,5 +72,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.1.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
