@@ -67,7 +67,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/techliberty/vue-ganttastic"
+    "url": "https://github.com/techLiberty/vue-ganttastic"
   },
   "dependencies": {
     "@vueuse/core": "^9.1.1"
