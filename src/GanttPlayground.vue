@@ -34,8 +34,8 @@ import type { GanttBarObject } from "./types"
 import dayjs from "dayjs"
 
 const format = ref("DD.MM.YYYY HH:mm")
-const chartStart = ref("01.01.2023 00:00")
-const chartEnd = ref("31.12.2029 00:00"
+const chartStart = ref("01.05.1965 00:00")
+const chartEnd = ref("31.12.1966 00:00"
   //dayjs(chartStart.value, format.value).add(90, "days").hour(12).format(format.value)
 )
 
@@ -43,7 +43,7 @@ let chartPrecision = ref("year");
 const precisionChoices = ["hour", "day", "week", "month", "year"];
 const precisionMaxDays = [7, 45, 356, 2190, 30000]
 let currentPrecision = 4;
-let myStartDate = "01.01.1960 00:00";
+let myStartDate = "01.04.1965 00:00";
 
 const bars1 = ref<GanttBarObject[]>([]);
 const bars2 = ref<GanttBarObject[]>([]);  
@@ -180,8 +180,8 @@ function loadData() {
 
   bars1.value.push(
     {
-      beginDate: "01.07.2024 00:00",
-      endDate: "21.08.2024 00:00",
+      beginDate: "01.07.1967 00:00",
+      endDate: "21.08.1968 00:00",
       ganttBarConfig: {
         id: "8621987329",
         label: "I'm in a bundle",

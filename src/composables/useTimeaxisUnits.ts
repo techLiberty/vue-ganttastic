@@ -84,9 +84,10 @@ export default function useTimeaxisUnits() {
 
     //  performs a similar operation for the upper precision units
     while (currentUpperUnit.isSameOrBefore(chartEndDayjs.value)) {
+      const yearsToEndOfDecade = 9 - currentUpperUnit.year() % 10;
       const endCurrentUpperUnit =
         upperUnit === "decade"
-          ? currentUpperUnit.add(9, "year").endOf("year")
+          ? currentUpperUnit.add(yearsToEndOfDecade, "year").endOf("year")
           : currentUpperUnit.endOf(upperUnit)
       const isLastItem = endCurrentUpperUnit.isAfter(chartEndDayjs.value)
 
