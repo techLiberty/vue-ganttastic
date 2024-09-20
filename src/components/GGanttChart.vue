@@ -83,7 +83,7 @@ import {
 export interface GGanttChartProps {
   chartStart: string | Date
   chartEnd: string | Date
-  precision?: "hour" | "day" | "date" | "week" | "month"
+  precision?: "hour" | "day" | "date" | "week" | "month" | "year"
   barStart: string
   barEnd: string
   currentTime?: boolean
@@ -161,6 +161,10 @@ const colors = computed(() =>
     ? colorScheme.value
     : colorSchemes[colorScheme.value as ColorSchemeKey] || colorSchemes.default
 )
+
+// The getChartRows function processes the default slot content of a Vue component to extract chart rows. 
+// It handles both direct children and nested children(e.g., when using v -for). 
+// Each chart row consists of a label and a list of bars, which are extracted from the props of the slot content.
 const getChartRows = () => {
   const defaultSlot = slots.default?.()
   const allBars: ChartRow[] = []

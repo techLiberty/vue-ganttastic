@@ -39,11 +39,11 @@ const chartEnd = ref("31.12.2029 00:00"
   //dayjs(chartStart.value, format.value).add(90, "days").hour(12).format(format.value)
 )
 
-let chartPrecision = ref("month");
-const precisionChoices = ["hour", "day", "week", "month"];
-const precisionMaxDays = [7, 45, 356, 2190]
-let currentPrecision = 3;
-let myStartDate = "01.01.2023 00:00";
+let chartPrecision = ref("year");
+const precisionChoices = ["hour", "day", "week", "month", "year"];
+const precisionMaxDays = [7, 45, 356, 2190, 30000]
+let currentPrecision = 4;
+let myStartDate = "01.01.1960 00:00";
 
 const bars1 = ref<GanttBarObject[]>([]);
 const bars2 = ref<GanttBarObject[]>([]);  
@@ -191,8 +191,8 @@ function loadData() {
   );
 
   bars2.value.push({
-    beginDate: "03.07.2024 00:00",
-    endDate: "05.07.2024 00:00",
+    beginDate: "03.07.2023 00:00",
+    endDate: "03.09.2023 00:00",
     ganttBarConfig: {
       id: "1592311887",
       label: "I'm in a bundle",
@@ -204,21 +204,21 @@ function loadData() {
   });
 
   bars2.value.push({
-    beginDate: "13.07.2024 00:00",
-    endDate: "03.08.2024 00:00",
+    beginDate: "13.07.2022 00:00",
+    endDate: "13.10.2022 00:00",
     ganttBarConfig: {
       id: "7716981641",
       label: "Lorem ipsum dolor",
       hasHandles: true,
       style: {
-        background: "#b74b52"
+        background: "green"
       }
     }
   });
 
   bars2.value.push({
     beginDate: "06.08.2024 00:00",
-    endDate: "23.08.2024 00:00",
+    endDate: "23.10.2024 00:00",
     ganttBarConfig: {
       id: "9716981641",
       label: "Oh hey",
@@ -232,8 +232,8 @@ function loadData() {
   });
 
   bars3.value.push({
-    beginDate: "15.07.2024 08:30",
-    endDate: "20.07.2024 16:45",
+    beginDate: "15.07.2021 08:30",
+    endDate: "20.10.2021 16:45",
     ganttBarConfig: {
       id: "9876543210",
       label: "Updated Bundle",
@@ -245,7 +245,7 @@ function loadData() {
   })
 
   bars3.value.push({
-    beginDate: "25.07.2024 12:00",
+    beginDate: "25.07.2023 12:00",
     endDate: "10.08.2024 18:30",
     ganttBarConfig: {
       id: "1234567890",
@@ -258,8 +258,8 @@ function loadData() {
   });
 
   bars3.value.push({
-    beginDate: "25.08.2024 09:15",
-    endDate: "30.08.2024 21:00",
+    beginDate: "25.08.2026 09:15",
+    endDate: "30.11.2026 21:00",
     ganttBarConfig: {
       id: "2468135790",
       label: "Greetings",
@@ -273,8 +273,8 @@ function loadData() {
   });
 
   bars4.value.push({
-    beginDate: "10.07.2024 08:00",
-    endDate: "15.07.2024 16:30",
+    beginDate: "10.07.2022 08:00",
+    endDate: "15.07.2023 16:30",
     ganttBarConfig: {
       id: "9876543210",
       label: "Novo Pacote",

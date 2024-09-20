@@ -17,9 +17,11 @@ export default function useTimeaxisUnits() {
         return "month"
       case "month":
         return "year"
+      case "year":
+        return "decade"
       default:
         throw new Error(
-          "Precision prop incorrect. Must be one of the following: 'hour', 'day', 'date', 'week', 'month'"
+          "Precision prop incorrect. Must be one of the following: 'hour', 'day', 'date', 'week', 'month', 'year'"
         )
     }
   })
@@ -30,6 +32,8 @@ export default function useTimeaxisUnits() {
         return "day"
       case "week":
         return "isoWeek"
+      case "year":
+        return "year"
       default:
         return precision.value
     }
@@ -40,8 +44,9 @@ export default function useTimeaxisUnits() {
     date: "DD",
     day: "DD",
     week: "WW",
-    month: "MMM",
-    year: "YYYY"
+    month: "MM",
+    year: "YY",
+    decade: "YYYY"
   }
 
   const timeaxisUnits = computed(() => {
@@ -53,10 +58,15 @@ export default function useTimeaxisUnits() {
     let currentUpperUnit = chartStartDayjs.value
     let currentLowerUnit = chartStartDayjs.value
 
+    //  iterates over the time range, creating lower precision units. For each iteration,
+    // it calculates the end of the current lower unit and checks if it is the last item
+    // by comparing it with the end date of the chart. It then calculates the width
+    // of the current lower unit as a percentage of the total time range.
     while (currentLowerUnit.isSameOrBefore(chartEndDayjs.value)) {
       const endCurrentLowerUnit = currentLowerUnit.endOf(lowerUnit)
       const isLastItem = endCurrentLowerUnit.isAfter(chartEndDayjs.value)
 
+      // Customize lower unit width calculation
       const lowerWidth = isLastItem
         ? (chartEndDayjs.value.diff(currentLowerUnit, "minutes", true) / totalMinutes) * 100
         : (endCurrentLowerUnit.diff(currentLowerUnit, "minutes", true) / totalMinutes) * 100
@@ -71,10 +81,18 @@ export default function useTimeaxisUnits() {
         .add(1, lowerUnit === "isoWeek" ? "week" : lowerUnit)
         .startOf(lowerUnit)
     }
+
+    //  performs a similar operation for the upper precision units
     while (currentUpperUnit.isSameOrBefore(chartEndDayjs.value)) {
-      const endCurrentUpperUnit = currentUpperUnit.endOf(upperUnit)
+      const endCurrentUpperUnit =
+        upperUnit === "decade"
+          ? currentUpperUnit.add(9, "year").endOf("year")
+          : currentUpperUnit.endOf(upperUnit)
       const isLastItem = endCurrentUpperUnit.isAfter(chartEndDayjs.value)
 
+      // Customize upper unit width calculation - This difference is then divided by the total
+      // number of minutes in the chart (totalMinutes) to get the proportion of the chart that this unit occupies.
+      // The result is multiplied by 100 to convert it to a percentage.
       const upperWidth = isLastItem
         ? (chartEndDayjs.value.diff(currentUpperUnit, "minutes", true) / totalMinutes) * 100
         : (endCurrentUpperUnit.diff(currentUpperUnit, "minutes", true) / totalMinutes) * 100
@@ -86,7 +104,10 @@ export default function useTimeaxisUnits() {
         width: String(upperWidth) + "%"
       })
 
-      currentUpperUnit = endCurrentUpperUnit.add(1, upperUnit).startOf(upperUnit)
+      currentUpperUnit =
+        upperUnit === "decade"
+          ? endCurrentUpperUnit.add(1, "year").startOf("year")
+          : endCurrentUpperUnit.add(1, upperUnit).startOf(upperUnit)
     }
     return { upperUnits, lowerUnits }
   })
