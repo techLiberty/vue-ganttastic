@@ -39,7 +39,17 @@ export default function useTimeaxisUnits() {
     }
   })
 
-  const displayFormats = {
+  const displayFormatsUpper = {
+    hour: "h",
+    date: "DD",
+    day: "DD",
+    week: "WW",
+    month: "MMM-YY",
+    year: "YYYY",
+    decade: "YYYY"
+  }
+  
+  const displayFormatsLower = {
     hour: "h",
     date: "DD",
     day: "DD",
@@ -72,7 +82,7 @@ export default function useTimeaxisUnits() {
         : (endCurrentLowerUnit.diff(currentLowerUnit, "minutes", true) / totalMinutes) * 100
 
       lowerUnits.push({
-        label: currentLowerUnit.format(displayFormats[precision?.value]),
+        label: currentLowerUnit.format(displayFormatsLower[precision?.value]),
         value: String(currentLowerUnit),
         date: currentLowerUnit.toDate(),
         width: String(lowerWidth) + "%"
@@ -99,7 +109,7 @@ export default function useTimeaxisUnits() {
         : (endCurrentUpperUnit.diff(currentUpperUnit, "minutes", true) / totalMinutes) * 100
 
       upperUnits.push({
-        label: currentUpperUnit.format(displayFormats[upperUnit]),
+        label: currentUpperUnit.format(displayFormatsUpper[upperUnit]),
         value: String(currentUpperUnit),
         date: currentUpperUnit.toDate(),
         width: String(upperWidth) + "%"

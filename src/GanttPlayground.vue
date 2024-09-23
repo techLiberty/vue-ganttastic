@@ -51,6 +51,7 @@ const bars3 = ref<GanttBarObject[]>([]);
 const bars4 = ref<GanttBarObject[]>([]);  
 
 onMounted(() => {
+  setChartDates();
   loadData();
 })
 
@@ -60,14 +61,15 @@ function zoomIn() {
     currentPrecision--;
   }
 
-  //clearData();
+  clearData();
   console.log('zoomed = ' + precisionChoices[currentPrecision] + ' added '+precisionMaxDays[currentPrecision]);
   chartPrecision.value = precisionChoices[currentPrecision];
 
   //chartStart.value = "01.03.2020 00:00";
   chartEnd.value = dayjs(chartStart.value, format.value)
     .add(precisionMaxDays[currentPrecision], "days").hour(12).format(format.value);
-  console.log('end date='+chartEnd.value) 
+  console.log('end date=' + chartEnd.value) 
+  loadData();
 }
 
 function zoomOut() {
@@ -75,13 +77,14 @@ function zoomOut() {
   if (currentPrecision < (precisionChoices.length - 1))
     currentPrecision++;
 
-  //clearData();
+  clearData();
   console.log('zoomed = ' + precisionChoices[currentPrecision]);
   chartPrecision.value = precisionChoices[currentPrecision];
 
   chartEnd.value = dayjs(chartStart.value, format.value)
     .add(precisionMaxDays[currentPrecision], "days").hour(12).format(format.value);
   console.log('end date=' + chartEnd.value)
+  loadData();
 }
 
 function shiftRight() {
@@ -172,11 +175,14 @@ const onContextmenuBar = (bar: GanttBarObject, e: MouseEvent, datetime?: string)
   console.log("contextmenu-bar", bar, e, datetime)
 }
 
-function loadData() {
+function setChartDates() {
   chartStart.value = myStartDate;
   chartEnd.value = dayjs(chartStart.value, format.value)
     .add(precisionMaxDays[currentPrecision], "days").hour(12).format(format.value);
   console.log('starting dates = ' + chartStart.value + ' to ' + chartEnd.value);
+}
+
+function loadData() {
 
   bars1.value.push(
     {
