@@ -1,6 +1,6 @@
 {
   "name": "@techliberty/vue-ganttastic",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "A simple and customizable Gantt chart component for Vue.js enhanced with decade view",
   "author": "techLiberty",
   "scripts": {

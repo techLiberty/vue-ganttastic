@@ -3,7 +3,7 @@
     <div class="g-timeunits-container">
       <div
         v-for="({ label, value, date, width }, index) in timeaxisUnits.upperUnits"
-        :key="label"
+        :key="`${label}_${index}`"
         class="g-upper-timeunit"
         :style="{
           background: index % 2 === 0 ? colors.primary : colors.secondary,
@@ -20,7 +20,7 @@
     <div class="g-timeunits-container">
       <div
         v-for="({ label, value, date, width }, index) in timeaxisUnits.lowerUnits"
-        :key="label"
+        :key="`${label}_${index}`"
         class="g-timeunit"
         :style="{
           background: index % 2 === 0 ? colors.ternary : colors.quartenary,
