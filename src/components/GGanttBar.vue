@@ -8,6 +8,7 @@
       top: `${rowHeight * 0.1}px`,
       left: `${xStart}px`,
       width: `${xEnd - xStart}px`,
+      minWidth: '12px',
       height: `${rowHeight * 0.8}px`,
       zIndex: isDragging ? 3 : 2
     }"
